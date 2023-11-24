@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation!
+{% endblock %}
+{% block javascripts %}
+	<script src="https://www.google.com/recaptcha/api.js?render=6LcaMa4jAAAAAB6lOGBcs3gDFoedmuvsTg4OY19V"></script>
+	<script src="{{ asset('js/recaptcha.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+
+	<div class="d-flex justify-content-center">
+		<div class="shadow p-3 mb-5 bg-body rounded mt-3">
+			<h1>Formulaire de reservation</h1>
+			{{ form_start(reservationForm, {'attr':{'id':'demo-form'}}) }}
+
+			{{ form_row(reservationForm.name) }}
+			{{ form_row(reservationForm.phone) }}
+			{{ form_row(reservationForm.email) }}
+			{{ form_row(reservationForm.service) }}
+			<div class="input-group mb-3">
+				<div class="me-2">{{ form_row(reservationForm.date) }}</div>
+				<div class="me-2">{{ form_row(reservationForm.time) }}</div>
+				<div class="me-2">{{ form_row(reservationForm.nbPassagers) }}</div>
+				<div class="me-2">{{ form_row(reservationForm.nbBagages) }}</div>
+				{{ form_row(reservationForm.numFlight) }}
+			</div>
+
+			{{ form_row(reservationForm.starAdress) }}
+			{{ form_row(reservationForm.endAdress) }}
+
+			{{ form_row(reservationForm.messages) }}
+			<input type="hidden" id="recaptchaResponse" name="recaptcha-response">
+			<input type="hidden" name="_tokenXL" value="{{ csrf_token('select-item') }}">
+			{{ form_row(reservationForm.submit) }}
+
+
+			{{ form_end(reservationForm) }}
+
+		</div>
+
+	</div>
+
+
+{% endblock %}

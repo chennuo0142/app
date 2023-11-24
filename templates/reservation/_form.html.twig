@@ -1,0 +1,155 @@
+{{ form_start(form) }}
+
+<div class="accordion" id="accordionExample">
+	<div class="accordion-item">
+		<h2 class="accordion-header" id="headingOne">
+			<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				Reservation
+			</button>
+		</h2>
+		<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+			<div class="accordion-body">
+
+				<div class="mb-3">
+					<label for="car">Vehicule</label>
+					<select class="form-select" aria-label="" name="car" id="" required>
+
+						{% for car in cars %}
+							<option value="{{ car.id }}">{{ car.brand }}
+								{{ car.model }}
+								(
+								{{ car.registrationNumber }}
+								)
+							</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="mb-3">
+					<label for="driver">Chauffeur</label>
+					<select class="form-select" aria-label="" name="driver" id="" required>
+
+						{% for driver in drivers %}
+							<option value="{{ driver.id }}">{{ driver.name }}</option>
+						{% endfor %}
+					</select>
+				</div>
+
+
+				{{ form_row(form.operationAt) }}
+
+				{{ form_row(form.time) }}
+				<div class="mb-3">
+					<label for="adresseDepart" class="form-label">Adresse de depart</label>
+					<input type="text" name="adresseDepart" id="adresseDepart" class="form-control" {% if reservation.adressDepart %} value="{{ reservation.adressDepart }}" {% else %} placeholder="{{ client.adress }}, {{ client.cp }} {{ client.city }}" {% endif %}>
+				</div>
+
+				<div class="mb-3">
+					<label for="adresseArrive" class="form-label">Adresse d'arriver</label>
+					<input type="text" name="adresseArrive" id="adresseArrive" class="form-control" {% if reservation.adressArrive %} value="{{ reservation.adressArrive }}" {% else %} placeholder="{{ client.adress }}, {{ client.cp }} {{ client.city }}" {% endif %}>
+				</div>
+
+
+				{{ form_row(form.nbPassager) }}
+				{{ form_row(form.nbBagage) }}
+				{{ form_row(form.flight) }}
+
+
+				{{ form_row(form.remarque) }}
+
+
+			</div>
+		</div>
+	</div>
+	<div class="accordion-item">
+		<h2 class="accordion-header" id="headingTwo">
+			<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+				Article
+			</button>
+		</h2>
+		<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+			<div class="accordion-body">
+				<label for="switch">
+					{% if userSetting.tva %}
+						{# si tva non applicable, on force le prix en ttc et desactiver cette option #}
+						{% if reservation.isTTC %}
+							<input type="checkbox" id="ttc-js" name="ttc" role="switch" onchange="setTTC(this)" checked>
+						{% else %}
+							<input type="checkbox" id="ttc-js" name="ttc" role="switch" onchange="setTTC(this)">
+						{% endif %}
+					{% else %}
+						{# si tva non applicable, on force le prix en ttc et desactiver cette option #}
+						<p class="alert alert-dark" role="alert">"Tarif TTC" est desactiver car option TVA appicalbe dans parametre est desactiver</p>
+						<input type="checkbox" id="ttc-js" name="ttc" role="switch" onchange="setTTC(this)" checked disabled>
+
+					{% endif %}
+
+
+					Tarif TTC
+				</label>
+				<br>
+				<input type="hidden" name="company_id" value="{{ company.id }}">
+				<input type="hidden" id="reservationId-js" value="{{ reservation.id }}">
+
+				<label for="article">Select article</label>
+				<div>
+
+					<select name="article" id="select-article-js" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+						{% for article in articles %}
+							<option value="{{ article.id }}">{{ article.name }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<input type="button" name="" id="btn-add-article" value="Ajouter" class="btn btn-primary">
+
+				<div class="overflow-auto">
+
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Designation</th>
+								<th>PU</th>
+								<th>TVA(%)</th>
+								<th>QT</th>
+								<th>TTC</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody id="showArticles-js">
+							{% if arrayArticleData %}
+								{% for article in arrayArticleData %}
+									<tr>
+										<td>{{ article.name }}</td>
+										<td>{{ article.price }}</td>
+										<td>{{ article.tva }}</td>
+										<td>{{ article.quantite}}</td>
+										<td>
+											{% if article.isTtc %}
+												{{article.ht}}
+											{% else %}
+												{{ article.ttc }}
+											{% endif %}
+										</td>
+										<td>
+											{% if article.id %}
+												<a href="{{ path('app_reservation_article_delete', {id:article.id, reservation:reservation.id}) }}" data-href="{{ path('app_reservation_article_delete', {id:article.id, reservation:reservation.id}) }}" class="delete-article-js" id="{article.id}">Delete</a>
+											{% endif %}
+										</td>
+									</tr>
+								{% endfor %}
+
+							{% endif %}
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br>
+<button class="btn btn-success" id="btn-enregistrer-new-js">Enregistrer</button>
+
+{{ form_end(form) }}

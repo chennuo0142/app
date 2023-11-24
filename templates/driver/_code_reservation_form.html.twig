@@ -1,0 +1,6 @@
+<form method="post" action="{{ path('app_driver_code', {'id': driver.id}) }}">
+	<input type="hidden" name="_token" value="{{ csrf_token('code0142' ~ driver.id) }}">
+	<button class="btn btn-primary ms-auto">
+		New Code
+	</button>
+</form>

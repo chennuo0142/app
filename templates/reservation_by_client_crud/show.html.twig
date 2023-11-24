@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReservationByClient
+{% endblock %}
+
+{% block body %}
+	<h1>ReservationByClient</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ reservation_by_client.id }}</td>
+			</tr>
+			<tr>
+				<th>Name</th>
+				<td>{{ reservation_by_client.name }}</td>
+			</tr>
+			<tr>
+				<th>Phone</th>
+				<td>{{ reservation_by_client.phone }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ reservation_by_client.email }}</td>
+			</tr>
+			<tr>
+				<th>Date</th>
+				<td>{{ reservation_by_client.date ? reservation_by_client.date|date('Y-m-d') : '' }}</td>
+			</tr>
+			<tr>
+				<th>Time</th>
+				<td>{{ reservation_by_client.time ? reservation_by_client.time|date('H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>StarAdress</th>
+				<td>{{ reservation_by_client.starAdress }}</td>
+			</tr>
+			<tr>
+				<th>EndAdress</th>
+				<td>{{ reservation_by_client.endAdress }}</td>
+			</tr>
+			<tr>
+				<th>Service</th>
+				<td>{{ reservation_by_client.service }}</td>
+			</tr>
+			<tr>
+				<th>DriverId</th>
+				<td>{{ reservation_by_client.driverId }}</td>
+			</tr>
+			<tr>
+				<th>CreatedAt</th>
+				<td>{{ reservation_by_client.createdAt ? reservation_by_client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>NbPassagers</th>
+				<td>{{ reservation_by_client.nbPassagers }}</td>
+			</tr>
+			<tr>
+				<th>NbBagages</th>
+				<td>{{ reservation_by_client.nbBagages }}</td>
+			</tr>
+			<tr>
+				<th>NumFlight</th>
+				<td>{{ reservation_by_client.numFlight }}</td>
+			</tr>
+			<tr>
+				<th>Messages</th>
+				<td>{{ reservation_by_client.messages }}</td>
+			</tr>
+			<tr>
+				<th>UserId</th>
+				<td>{{ reservation_by_client.userId }}</td>
+			</tr>
+			<tr>
+				<th>Slug</th>
+				<td>{{ reservation_by_client.slug }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="d-flex flex-row mb-3">
+		<div class="p-2">
+			<a href="{{ path('app_reservation_by_client_crud_index') }}" class="btn btn-primary">back to list</a>
+		</div>
+		<div class="p-2">
+			<a href="{{ path('app_reservation_by_client_crud_edit', {'id': reservation_by_client.id}) }}" class="btn btn-info">edit</a>
+		</div>
+		<div class="p-2">{{ include('reservation_by_client_crud/_delete_form.html.twig') }}</div>
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des Utilisateurs</h1>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Name</th>
+				<th scope="col">Email</th>
+				<th scope="col">Roles</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<th scope="row">{{ user.id }}</th>
+					<td>{{ user.name }}</td>
+					<td>{{ user.email }}</td>
+					<td>
+						{% for role in user.roles %}
+
+							{% if role == "ROLE_ADMIN" %}
+								ADMIN
+							{% elseif role == "ROLE_DISPATCHER" %}
+								DISPATCHER
+							{% elseif role == "ROLE_USER" %}
+								USER
+							{% endif %}
+
+						{% endfor %}
+					</td>
+					<td>
+						<a href="{{ path('app_user_edit',{id:user.id}) }}" class="btn btn-warning">Modifier</a>
+					</td>
+				</tr>
+			{% endfor %}
+
+
+		</tbody>
+	</table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.gestion.html.twig' %}
+
+{% block title %}Gestion Company
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/company.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+	<nav>
+		<ul>
+			<li>
+				<h3>Societe</h3>
+			</li>
+		</ul>
+		<ul>
+			<li></li>
+			<li>
+				<a href="{{path('app_gestion_index')}}">Retour Gestion</a>
+			</li>
+		</ul>
+	</nav>
+
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+
+	<button type="submit" class="btn btn-primary">Enregister</button>
+	{{ form_end(form) }}
+
+	<p class="d-flex justify-content-center">Numeros tva a titre indicatif</p>
+	<p class="d-flex justify-content-center">Numeros tva generer sur les numeros de siret fournis par vous, verifier l'exatitude du numeros de siret</p>
+	<div id="js-show-numTva" class="d-flex justify-content-center shadow p-3 mb-5 bg-body rounded"></div>
+
+{% endblock %}

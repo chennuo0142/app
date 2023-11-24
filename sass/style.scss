@@ -1,0 +1,59 @@
+// @import "pico-master/scss/pico.scss";
+
+@import "reset", "gestion_nav", "driver_show", "client_form";
+
+
+
+#table_driver {
+    display: none;
+
+    @include wide-screen {
+        display: block;
+
+    }
+}
+
+#driver_mobile {
+
+    @include wide-screen {
+        display: none;
+    }
+
+}
+
+.photo_driver {
+    border-radius: 50%;
+}
+
+.home_header {
+    width: auto;
+    height: 400px;
+    background-image: url('../image/bannier.jpg');
+    background-size: cover;
+
+
+    @include wide-screen {
+        height: 600px;
+    }
+}
+
+.form-connexion {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.body-wrapper {
+
+
+    @include wide-screen {
+        display: grid;
+        grid-template-columns: 20% 80%;
+
+    }
+}
+
+.title-home-page {
+    color: rgb(57, 17, 218);
+    font-weight: bold;
+}

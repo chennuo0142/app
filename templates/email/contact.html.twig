@@ -1,0 +1,30 @@
+{% apply inline_css(source('@styles/email_contact.css')) %}
+<body>
+	<div class="corp-message">
+		<header>
+			<h1 class="brand">Paris Presitge Transport</h1>
+		</header>
+
+		<div class="content">
+			<h1>Message de
+				{{contact.name}}</h1>
+			<p>Le:
+				{{contact.createAt | date('d/m/Y - H:i ')}}</p>
+
+			<p class="client_name">Nom:
+				{{ contact.name }}</p>
+			<p class="client_name">Email:
+				{{ contact.email }}</p>
+			<p class="client_name">Sujet:
+				{{ contact.sujet }}</p>
+			<p class="client_name">Message:</p>
+
+			<p class="message">{{ contact.message }}</p>
+
+
+		</div>
+	</div>
+</body>
+
+
+{% endapply %}

@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation
+{% endblock %}
+
+{% block body %}
+	<h1>Reservation</h1>
+	<a href="{{ path('app_reservation_new', {client: client.id }) }}">
+		<button class="btn btn-sm btn-primary mb-2 mt-2">+ New Reservation</button>
+	</a>
+	<div class="card mb-2">
+		<div class="card-body">
+			Client:
+			<br>
+			{{ client.name }}
+			<br>
+			{{ client.adress }}
+			<br>
+			{{ client.city}}
+			{{ client.cp }}
+		</div>
+
+	</div>
+	<div class="card mb-2">
+		<div class="card-body">
+			<table class="table">
+				<thead>
+					<tr>
+
+						<th>Nom</th>
+						<th>Date</th>
+
+
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if reservationClients %}
+						{% for reservation in reservationClients %}
+							<tr>
+
+								<td>{{ client.name }}</td>
+								<td>{{ reservation.operationAt| date('d/m/Y') }}
+									a
+									{{ reservation.time | date('H:i')}}</td>
+
+
+								<td>
+									<a href="{{ path('app_reservation_show',{id:reservation.id }) }}">show</a>
+								</td>
+							</tr>
+
+
+						{% endfor %}
+					{% endif %}
+				</tbody>
+			</table>
+
+
+		</div>
+	</div>
+
+{% endblock %}

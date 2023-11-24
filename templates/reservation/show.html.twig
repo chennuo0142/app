@@ -1,0 +1,175 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}show
+{% endblock %}
+
+{% block body %}
+
+	{% include "reservation/_nav.html.twig" %}
+
+	<div class="card">
+		<div class="card-body">
+			Company:
+			<br>
+			{{ company.name }}
+			<br>
+			{{ company.adress }}
+			<br>
+			{{ company.zipCode }}
+			{{ company.city }}
+		</div>
+	</div>
+	<div class="card">
+
+		<div class="card-body">
+			Client:
+			<br>
+			{{ client.name}}
+			{{ client.firstName}}
+			<br>
+			{{ client.adress }}
+			<br>
+			{{ client.cp }}
+			{{ client.city }}
+		</div>
+	</div>
+
+	{% if reservation %}
+		<div class="card">
+			<div class="card-body">
+
+				<table>
+					<tbody>
+						<tr>
+							<td>Vol / Train Num:</td>
+							<td>{{ reservation.flight }}</td>
+						</tr>
+
+						<tr>
+							<td>Chauffeur</td>
+							<td>{{ driver.name | default('!! Driver is not define')}}</td>
+						</tr>
+						<tr>
+							<td>Vehicule</td>
+							<td>{{ car.brand | default('!! Car is not define') }}
+								{{ car.model | default('') }}
+								{{ car.registrationNumber | default('') }}</td>
+						</tr>
+						<tr>
+							<td>PAX</td>
+							<td>{{ reservation.nbPassager }}</td>
+						</tr>
+
+						<tr>
+							<td>BAX</td>
+							<td>{{ reservation.nbBagage }}</td>
+						</tr>
+
+						<tr>
+							<td>Date</td>
+							<td>{{ reservation.operationAt | date('d/m/Y') }}
+								à
+								{{ reservation.time | date('H:i')}}</td>
+						</tr>
+						<tr>
+							<td>Adresse</td>
+							<td>{{ reservation.adressDepart }}</td>
+						</tr>
+						<tr>
+							<td>Destination</td>
+							<td>{{ reservation.adressArrive }}</td>
+						</tr>
+
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+
+		<div class="card ">
+			<div class="card-body">
+				<table>
+
+
+					<strong>Date de commande:</strong>
+					{{ reservation.creatAt | date('d/m/Y - H:i') }}
+
+
+					<thead>
+						<th>Designation</th>
+						<th>Prix U</th>
+						<th>Taux TVA</th>
+						<th>Qauntite</th>
+						<th>Total</th>
+
+					</thead>
+					<tbody>
+						{% if arrayArticleData %}
+							{% for article in arrayArticleData %}
+								<tr>
+
+									<td>{{ article.name }}</td>
+									<td class="ms-4">{{ article.price | number_format(2,",","")  }}</td>
+									<td>{{ article.tva }}%</td>
+									<td>{{ article.quantite}}</td>
+									<td>
+										{# si prix sont en TTC #}
+										{% if article.isTtc %}
+											{{article.ht | number_format(2,",","") }}
+										{% else %}
+											{{ article.ttc | number_format(2,",","")  }}
+										{% endif %}
+									</td>
+								</tr>
+
+
+							{% endfor %}
+
+
+						{% endif %}
+
+					</tbody>
+
+
+				</table>
+
+			</div>
+		</div>
+		<div class="shadow-none p-3 mb-5 bg-light rounded d-flex flex-row-reverse">
+
+			{% if arrayArticleData %}
+
+				<div class="p-2">
+					TTC:
+					<strong>{{ total.total_ttc | number_format(2,",","")  }}</strong>
+				</div>
+
+				<div class="p-2">
+					TVA:
+					<strong>{{ total.total_tva | number_format(2,",","")  }}</strong>
+				</div>
+
+
+				<div class="p-2">
+					HT:
+					<strong>{{total.total_ht | number_format(2,",","") }}</strong>
+				</div>
+
+
+			{% endif %}
+		</div>
+		<div class="d-flex justify-content-between mt-2" role="group" aria-label="Basic mixed styles example">
+			<a href="{{ path('app_reservation_index',{'client': client.id}) }}" role="button">
+				<button type="button" class="btn btn-primary">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane-fill" viewbox="0 0 16 16">
+						<path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Z"/>
+					</svg>
+					Retour</button>
+			</a>
+			<a href="{{ path('app_reservation_edit', {'reservation':reservation.id }) }}" role="button">
+				<button type="button" class="btn btn-primary">Edit</button>
+			</a>
+			{% include "reservation/_delete_form.html.twig" %}
+		</div>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dispatcher index
+{% endblock %}
+
+{% block body %}
+	<h1>Dispatcher index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+
+
+				<th>Name</th>
+				<th>Email</th>
+				<th>country</th>
+
+				<th>actions</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for dispatcher in dispatchers %}
+				<tr>
+
+
+					<td>{{ dispatcher.name }}</td>
+					<td>{{ dispatcher.email }}</td>
+					<td>{{ dispatcher.country }}</td>
+
+					<td>
+						<a href="{{ path('app_dispatcher_edit', {'id': dispatcher.id}) }}">edit</a>
+					</td>
+					<td>
+						<a href="{{ path('app_dispatcher_commande_index', {'id': dispatcher.id}) }}">commande</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="11">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_dispatcher_new') }}">Create new</a>
+{% endblock %}

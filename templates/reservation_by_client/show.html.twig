@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation Confirmation
+{% endblock %}
+
+{% block body %}
+	<p>Nous vous confirmons que votre reservation nous est bien parvenu, vous allez recevoir un email de confirmation dans quelques minutes</p>
+	<h3>Etape suivante:</h3>
+	<p>Nous allons prendre en charge votre demande et planifier le service demande</p>
+
+	<p>Toute l'equipe de Paris Prestige Transfert vous remerci pour votre reservation ainsi que la confiance que vous nous accorder pour effectuer tous vos besoins de transport a paris</p>
+
+
+	{# chauffeur information #}
+
+	{% if driver %}
+		<div class="shadow-sm p-3 mb-5 bg-body rounded">
+			<div class="card" style="width: 18rem;"><img src="{{ asset('uploads/' ~ driver.photo) | imagine_filter('miniature') }}" class="card-img-top photo_driver" alt="...">
+				<div class="card-body">
+					<p class="card-text">Driver Name:
+						{{ driver.name }}</p>
+					<p class="card-text">Telephone:
+						{{ driver.phone }}</p>
+					<p class="card-text">Email:
+						{{ driver.email }}</p>
+					{% if car %}
+						<p class="card-text">Vehicule:
+							{{ car.brand }}
+							-
+							{{ car.model }}
+							(
+							{{car.registrationNumber}}
+							)</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
+
+	{# companie information #}
+	{% if compagny %}
+		<div class="shadow-sm p-3 mb-5 bg-body rounded">
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<p class="card-text">Prestataire:
+						{{ compagny.name }}</p>
+					<p class="card-text">Telephone:
+						{{ compagny.phone }}</p>
+					<p class="card-text">Email:
+						{{ compagny.email }}</p>
+					<p class="card-text">Adresse:
+						{{ compagny.adress }},
+						{{ compagny.zipCode }}
+						{{ compagny.city }}</p>
+				</div>
+			</div>
+		</div>
+
+
+	{% endif %}
+{% endblock %}

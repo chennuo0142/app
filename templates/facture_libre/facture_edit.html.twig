@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture
+{% endblock %}
+
+{% block body %}
+	<h1>Facture Edition</h1>
+
+	<main class="shadow p-3 mb-5 bg-body rounded mt-3">
+
+		{{ include('facture_libre/_form.html.twig') }}
+
+	</main>
+{% endblock %}

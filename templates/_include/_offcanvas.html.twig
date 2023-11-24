@@ -1,0 +1,85 @@
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+	<div class="offcanvas-header">
+		<h5 class="offcanvas-title" id="offcanvasExampleLabel">Gestion</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+	</div>
+	<div class="offcanvas-body">
+		<ul>
+			<span></span>
+			<li>
+				{% if setting.company %}
+					<img src="/image/ico/check_green.svg" alt="" width="30" height="30">
+				{% else %}
+					<img src="/image/ico/exclamation.svg" alt="" width="30" height="30">
+				{% endif %}
+
+				<a href="{{ path('app_company') }}">Societe</a>
+			</li>
+			<li>
+				{% if setting.driver %}
+					<img src="/image/ico/check_green.svg" alt="" width="30" height="30">
+				{% else %}
+					<img src="/image/ico/exclamation.svg" alt="" width="30" height="30">
+				{% endif %}
+				<a href="{{path('app_driver_index')}}">Driver</a>
+			</li>
+			<li>
+				{% if setting.car %}
+					<img src="/image/ico/check_green.svg" alt="" width="30" height="30">
+				{% else %}
+					<img src="/image/ico/exclamation.svg" alt="" width="30" height="30">
+				{% endif %}
+				<a href="{{path('app_car_index')}}">Vehicule</a>
+			</li>
+			<li>
+				{% if setting.bank %}
+					<img src="/image/ico/check_green.svg" alt="" width="30" height="30">
+				{% else %}
+					<img src="/image/ico/exclamation.svg" alt="" width="30" height="30">
+				{% endif %}
+				<a href="{{path('app_bank_account_index')}}">Banque</a>
+			</li>
+			<li>
+				{% if setting.client %}
+					<img src="/image/ico/check_green.svg" alt="" width="30" height="30">
+				{% else %}
+					<img src="/image/ico/exclamation.svg" alt="" width="30" height="30">
+				{% endif %}
+				<a href="{{path('app_client_index')}}">Client</a>
+			</li>
+			<li>
+				{% if setting.article %}
+					<img src="/image/ico/check_green.svg" alt="" width="30" height="30">
+				{% else %}
+					<img src="/image/ico/exclamation.svg" alt="" width="30" height="30">
+				{% endif %}
+				<a href="{{path('app_article_index')}}">Article</a>
+			</li>
+			<li>
+				<a href="{{path('app_galery')}}">Galerie</a>
+			</li>
+
+			<li>
+				{% if setting.isReservation %}
+					<a href="{{ path('app_gestion_reservation') }}" role="button">Reservation</a>
+				{% else %}
+					<a href="{{ path('app_gestion_reservation') }}" role="button" disabled>Reservation</a>
+				{% endif %}
+			</li>
+			<li>
+				{% if setting.isReservation %}
+					<a href="{{ path('app_facture_index') }}" role="button">Facture</a>
+				{% else %}
+					<a href="#" role="button" disabled>Facture</a>
+				{% endif %}
+			</li>
+			<li>
+				{% if setting.isReservation %}
+					<a href="{{ path('app_dispatcher_index') }}" role="button">Dispatcher</a>
+				{% else %}
+					<a href="#" role="button" disabled>Dispatcher</a>
+				{% endif %}
+			</li>
+		</ul>
+	</div>
+</div>

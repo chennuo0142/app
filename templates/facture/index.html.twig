@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture Liste
+{% endblock %}
+
+{% block body %}
+	<h1>Facture Liste</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Date</th>
+				<th>Email</th>
+				<th>Comments</th>
+
+
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for facture in factures %}
+				<tr>
+					<td>{{ facture.name }}</td>
+					<td>{{ facture.date ? facture.date|date('Y-m-d') : '' }}</td>
+					<td>{{ facture.email }}</td>
+					<td>{{ facture.comment }}</td>
+
+
+					<td>
+						<a href="{{ path('app_facture_show', {'id': facture.id}) }}">show</a>
+						<a href="{{ path('app_facture_edit', {'id': facture.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="27">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_facture_new') }}" class="btn btn-primary">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewbox="0 0 16 16">
+			<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+			<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+		</svg>
+		Create new
+
+	</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ReservationByClient
+{% endblock %}
+
+{% block body %}
+	<h1>Edit ReservationByClient</h1>
+
+	{{ include('reservation_by_client_crud/_form.html.twig', {'button_label': 'Update'}) }}
+	<br>
+
+	<a href="{{ path('app_reservation_by_client_crud_index') }}" class="btn btn-primary">back to list</a>
+
+{% endblock %}

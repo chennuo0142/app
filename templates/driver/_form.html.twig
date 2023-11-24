@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<label for="car-select">Choose a car:</label>
+{% if cars %}
+	<select name="car" id="car-select" class="form-select" aria-label="Default select example">
+		{% for car in cars %}
+
+			<option value="">--Please choose an car--</option>
+			<option value="{{car.id}}">{{ car.brand}}
+			</option>
+
+		{% endfor %}
+	</select>
+{% endif %}
+<br>
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

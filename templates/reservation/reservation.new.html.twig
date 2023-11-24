@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ReservationController!
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/reservation.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+	<h1>Reservation New</h1>
+	<p>Reservation Id :
+		{{ reservation.id }}</p>
+	<div class="container ">
+		<div class="row shadow p-3 mb-5 bg-body rounded">
+			<div class="col">
+				<h5>Societe:</h5>
+				{{ company.name }}
+				<br>
+				{{ company.adress }}
+				<br>
+				{{ company.city}}
+				{{ company.zipCode }}
+			</div>
+			<div class="col">
+				<h5>Client:</h5>
+				{{ client.name }}
+				<br>
+				{{ client.adress }}
+				<br>
+				{{ client.city}}
+				{{ client.cp }}
+			</div>
+
+		</div>
+
+	</div>
+
+
+	{{ include('reservation/_form.html.twig') }}
+{% endblock %}

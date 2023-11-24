@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Facture
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/factureLibre.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+	<h1>Edit Facture</h1>
+
+	{{ include('facture/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+{% endblock %}

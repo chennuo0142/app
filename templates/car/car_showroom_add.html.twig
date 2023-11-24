@@ -1,0 +1,54 @@
+{% extends 'base.gestion.html.twig' %}
+
+{% block title %}Edit Car
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/carPhoto.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+	<h1>Edit show room</h1>
+	<a href="{{ path('app_car_index') }}">back to list</a>
+	<div>
+		<img src="{{ asset('uploads/' ~ car.photo) }}" alt="photo" width="150" id="car-photo-js">
+	</div>
+	{{ include('car/_showRoom_form.html.twig') }}
+	{# <form action="{{ path('app_car_showroom_insert',{id:car.id}) }}" method="post">
+						<label for="galery-select">Choisire une galery:</label>
+				
+						<select name="galery" id="galery-select">
+							<option value="">--Please choose an option--</option>
+							{% if galerys %}
+								{% for galery in galerys %}
+									<option value={{ galery.id }}>{{ galery.name }}</option>
+				
+				
+								{% endfor %}
+				
+				
+							{% endif %}
+				
+				
+						</select>
+						<button type="submit">Enregister</button>
+					</form> #}
+	<div>
+		{% if galerys %}
+			{% for galery in galerys %}
+				<article>
+					<p>
+						{{ galery.name }}</p>
+					{% for image in galery.images %}
+
+
+						<img src="{{ asset('uploads/' ~ image.name) }}" alt="" width="200">
+
+
+					{% endfor %}
+				</article>
+			{% endfor %}
+
+
+		{% endif %}
+
+	</div>
+{% endblock %}

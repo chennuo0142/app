@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ReservationByClient index
+{% endblock %}
+
+{% block body %}
+	<h1>ReservationByClient index</h1>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Phone</th>
+				<th>Email</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Driver Id</th>
+
+				<th>CreatedAt</th>
+
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for reservation_by_client in reservation_by_clients %}
+				<tr>
+					<td>{{ reservation_by_client.id }}</td>
+					<td>{{ reservation_by_client.name }}</td>
+					<td>{{ reservation_by_client.phone }}</td>
+					<td>{{ reservation_by_client.email }}</td>
+					<td>{{ reservation_by_client.date ? reservation_by_client.date|date('Y-m-d') : '' }}</td>
+					<td>{{ reservation_by_client.time ? reservation_by_client.time|date('H:i:s') : '' }}</td>
+
+					<td>{{ reservation_by_client.driverId }}</td>
+					<td>{{ reservation_by_client.createdAt ? reservation_by_client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+
+					<td>
+						<a href="{{ path('app_reservation_by_client_crud_show', {'id': reservation_by_client.id}) }} " class="btn btn-primary btn-sm">show</a>
+
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="18">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+{% endblock %}

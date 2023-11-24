@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GestionController!
+{% endblock %}
+{% block stylesheet %}
+	<link rel="stylesheet" href="{{ asset('css/gestion-index.css') }}">
+{% endblock %}
+{% block body %}
+	<h1>Gestion</h1>
+	<div class="container">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+			<div class="col menu-card m-2">
+				<a href="{{path('app_company')}}">
+					<span class="menu-card-content-logo"><img src="/image/ico/companie.svg" alt=""></span>
+					<span class="menu-card-content-text">Companie
+						<small>Information concernant votre societe</small>
+					</span>
+				</a>
+			</div>
+			<div class="col menu-card m-2">
+				<a href="{{path('app_driver_index')}}">
+					<span class="menu-card-content-logo"><img src="/image/ico/driver.svg" alt=""></span>
+					<span class="menu-card-content-text">Drivers
+
+						<small>Les partenaires de votre societe</small>
+					</span>
+				</a>
+			</div>
+			<div class="col menu-card m-2">
+				<a href="{{path('app_client_index')}}">
+					<span class="menu-card-content-logo"><img src="/image/ico/client.svg" alt=""></span>
+					<span class="menu-card-content-text">Client</span>
+				</a>
+			</div>
+			<div class="col menu-card m-2">
+				<a href="{{path('app_article_index')}}">
+					<span class="menu-card-content-logo"><img src="/image/ico/article.svg" alt=""></span>
+					<span class="menu-card-content-text">Articles</span>
+				</a>
+			</div>
+			<div class="col menu-card m-2">
+				<a href="{{path('app_bank_account_index')}}">
+					<span class="menu-card-content-logo"><img src="/image/ico/bank.svg" alt=""></span>
+					<span class="menu-card-content-text">Banque</span>
+				</a>
+			</div>
+			<div class="col menu-card m-2">
+				<a href="{{path('app_galery')}}">
+					<span class="menu-card-content-logo"><img src="/image/ico/media.svg" alt=""></span>
+					<span class="menu-card-content-text">Galery</span>
+				</a>
+			</div>
+			<div class="col menu-card m-2">
+				<a href="{{ path('app_car_index') }}">
+					<span class="menu-card-content-logo"><img src="/image/ico/car.svg" alt=""></span>
+					<span class="menu-card-content-text">Vehicules</span>
+				</a>
+			</div>
+			<div class="col menu-card m-2">
+				<a href="{{ path('app_setting') }}">
+					<span class="menu-card-content-logo"><img src="/image/ico/settings.svg" alt=""></span>
+					<span class="menu-card-content-text">Parameter</span>
+				</a>
+			</div>
+			<div class="col menu-card m-2">
+				<a href="{{ path('app_profile_index') }}">
+					<span class="menu-card-content-logo"><img src="/image/ico/utilisateur.svg" alt=""></span>
+					<span class="menu-card-content-text">Profile</span>
+				</a>
+			</div>
+			{% if is_granted('ROLE_ADMIN') %}
+				<div class="col menu-card m-2">
+					<a href="{{ path('app_profile_index') }}">
+						<span class="menu-card-content-logo"><img src="/image/ico/utilisateur.svg" alt=""></span>
+						<span class="menu-card-content-text">Reservations</span>
+					</a>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Driver index
+{% endblock %}
+
+{% block body %}
+	<h1>Driver index</h1>
+	<div class="mb-2">
+		<a href="{{ path('app_gestion_index') }}">
+			<button class="btn btn-primary">Retour Gestion</button>
+		</a>
+
+		<a href="{{ path('app_driver_new') }}">
+			<button class="btn btn-primary">Ajouter un chauffeur</button>
+		</a>
+	</div>
+	{% for driver in drivers %}
+		<article class="driver-show-cadre shadow-sm p-2 mb-2 bg-light rounded overflow-hidden">
+			<div class="zone-left">
+				<div class="zone-left-up"><img src="{{ asset('uploads/' ~ driver.photo) | imagine_filter('miniature') }}" alt="photo" class="photo_driver"></div>
+				<div class="zone-left-botom">
+					<span>
+						{{ driver.name }}
+						{{ driver.firstName }}
+					</span>
+					<span>Inscrit le:
+						{{ driver.createdAt ? driver.createdAt|date('Y-m-d') : '' }}</span>
+
+				</div>
+
+
+			</div>
+			<div class="zone-right">
+				<span>Telephone:
+					{{ driver.phone }}</span>
+				<span>Email:
+					{{ driver.email }}</span>
+				<span>Adresse:
+					{{ driver.adress }}</span>
+				<span>Ville:{{ driver.city }}</span>
+				<span>Cp:
+					{{ driver.cp }}</span>
+
+
+			</div>
+
+
+			<a href="{{ path('app_driver_show', {'id': driver.id}) }}">show</a>
+			<a href="{{ path('app_driver_edit', {'id': driver.id}) }}">edit</a>
+		</article>
+
+	{% else %}
+		<article>
+			no records found
+		</article>
+
+
+	{% endfor %}
+
+
+{% endblock %}

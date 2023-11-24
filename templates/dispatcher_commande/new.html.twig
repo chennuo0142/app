@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DispatcherCommande
+{% endblock %}
+
+{% block body %}
+	<h1>Create new DispatcherCommande</h1>
+
+	{{ include('dispatcher_commande/_form.html.twig') }}
+
+	<a href="{{ path('app_dispatcher_commande_index', {id:dispatcher.id}) }}" class="btn btn-secondary">back to list</a>
+{% endblock %}

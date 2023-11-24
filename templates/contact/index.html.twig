@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!
+{% endblock %}
+{% block javascripts %}
+	<script src="https://www.google.com/recaptcha/api.js?render=6LcaMa4jAAAAAB6lOGBcs3gDFoedmuvsTg4OY19V"></script>
+	<script src="{{ asset('js/recaptcha.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+
+	<h1>Contact page</h1>
+
+
+	{{ form_start(form) }}
+	{{ form_row(form.name) }}
+	{{ form_row(form.email) }}
+	{{ form_row(form.sujet) }}
+	{{ form_row(form.message) }}
+	<input type="hidden" name="recaptcha-response" id="recaptchaResponse">
+	{{ form_row(form.submit) }}
+	{{ form_end(form) }}
+
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{{ form_start(factureLibreForm) }}
+
+<div class="input-group mb-3">
+	<div class="me-2">
+		{{ form_row(factureLibreForm.date) }}
+	</div>
+
+	<div class="me-2"></div>
+	{{ form_row(factureLibreForm.name) }}
+</div>
+{{ form_row(factureLibreForm.company) }}
+{{ form_row(factureLibreForm.adress) }}
+<div class="input-group mb-3">
+	<div class="me-2">
+		{{ form_row(factureLibreForm.zipCode) }}
+	</div>
+
+	<div class="me-2">
+		{{ form_row(factureLibreForm.city) }}
+	</div>
+	<div class="me-2">
+		{{ form_row(factureLibreForm.country) }}
+	</div>
+
+</div>
+
+{{ form_row(factureLibreForm.email) }}
+
+<div class="row text-primary bg-dark">
+	<div class="col-7">DESIGNATION</div>
+	<div class="col-2">PRIX</div>
+	<div class="col-1">QT</div>
+	<div class="col-2">TVA</div>
+</div>
+<div class="row mt-1">
+	<div class="col-7">{{ form_row(factureLibreForm.article1) }}</div>
+	<div class="col-2">{{ form_row(factureLibreForm.price1) }}</div>
+	<div class="col-1">{{ form_row(factureLibreForm.quantite1) }}</div>
+	<div class="col-2">{{ form_row(factureLibreForm.tva1) }}</div>
+</div>
+<div class="row ">
+	<div class="col-7">{{ form_row(factureLibreForm.article2) }}</div>
+	<div class="col-2">{{ form_row(factureLibreForm.price2) }}</div>
+	<div class="col-1">{{ form_row(factureLibreForm.quantite2) }}</div>
+	<div class="col-2">{{ form_row(factureLibreForm.tva2) }}</div>
+</div>
+<div class="row ">
+	<div class="col-7">{{ form_row(factureLibreForm.article3) }}</div>
+	<div class="col-2">{{ form_row(factureLibreForm.price3) }}</div>
+	<div class="col-1">{{ form_row(factureLibreForm.quantite3) }}</div>
+	<div class="col-2">{{ form_row(factureLibreForm.tva3) }}</div>
+</div>
+<div class="row ">
+	<div class="col-7">{{ form_row(factureLibreForm.article4) }}</div>
+	<div class="col-2">{{ form_row(factureLibreForm.price4) }}</div>
+	<div class="col-1">{{ form_row(factureLibreForm.quantite4) }}</div>
+	<div class="col-2">{{ form_row(factureLibreForm.tva4) }}</div>
+</div>
+
+
+<button class="btn btn-primary " id="facture_libre_valider" type="submit">{{ button_label|default('Save') }}</button>
+{{ form_end(factureLibreForm) }}

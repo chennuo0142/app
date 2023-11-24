@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DispatcherCommande index
+{% endblock %}
+
+{% block body %}
+	<h1>DispatcherCommande index</h1>
+	<section class="border p-2 mb-2">
+		<p>Dispatcher info:</p>
+		<h2>{{dispatcher.name}}</h2>
+	</section>
+	<section class="border p-2 mb-2 d-flex justify-content-center text-white bg-secondary">
+		<form action="{{ path('app_dispatcher_commande_index',{id:dispatcher.id}) }}" method:"post">
+			<label for="date_star">Date debut:
+			</label>
+			<input type="date" name="date_star" id="date_star">
+			<label for="date_end">Date fin:
+			</label>
+			<input type="date" name="date_end" id="date_end">
+			<button type="submit">Recherche</button>
+		</form>
+	</section>
+	<section class="border p-2  d-flex justify-content-between align-items-center">
+		{% if resultatByDate %}
+
+			<span>
+				Resultats du
+				<strong class="text-primary">{{date_star | date('d/m/Y')}}</strong>
+				au
+				<strong class="text-primary">{{date_end | date('d/m/Y')}}</strong>
+
+			</span>
+			<span>
+
+				<a href="{{ path('app_make_liste_commande_dispatcher',{id:dispatcher.id, date_star: date_star, date_end: date_end}) }}" class="btn btn-secondary">PDF</a>
+			</span>
+		{% else %}
+			<div class="d-flex justify-content-center w-100">
+				<span class="text-info bg-dark p-1">Pour generer un fichier PDF des commandes, veuillez selectionner une date de debut et de fin!</span>
+			</div>
+		{% endif %}
+	</section>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Article</th>
+				<th>Tarif</th>
+				<th>Quantity</th>
+				<th>Total</th>
+				<th>Comment</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for dispatcher_commande in dispatcher_commandes %}
+				<tr>
+					<td>{{ dispatcher_commande.date ? dispatcher_commande.date|date('d-m-Y')}}</td>
+					<td>{{ dispatcher_commande.article }}</td>
+					<td>{{ dispatcher_commande.price }}</td>
+
+					<td>{{ dispatcher_commande.quantity }}</td>
+					<td>{{ dispatcher_commande.price * dispatcher_commande.quantity }}</td>
+					<td>{{ dispatcher_commande.comment }}</td>
+					<td>
+
+						<a href="{{ path('app_dispatcher_commande_edit', {'id': dispatcher_commande.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">no records found</td>
+				</tr>
+			{% endfor %}
+
+		</tbody>
+
+
+	</table>
+	{% if resultatByDate %}
+		<section class="d-flex justify-content-end ">
+			<div class="row shadow-sm mb-5 bg-body-tertiary rounded text-white bg-secondary">
+				<div class="col-md-8 text-end ">Commande:</div>
+				<div class="col-6 col-md-4">{{ total_array.total_commande }}</div>
+				<div class="col-md-8 text-end">Total(€):</div>
+				<div class="col-6 col-md-4">{{ total_array.total_price }}</div>
+			</div>
+
+		</section>
+
+
+	{% endif %}
+	<a href="{{ path('app_dispatcher_commande_new',{id:dispatcher.id}) }}" class="btn btn-primary">Create new</a>
+{% endblock %}

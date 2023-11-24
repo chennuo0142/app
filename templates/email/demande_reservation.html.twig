@@ -1,0 +1,53 @@
+{% apply inline_css(source('@styles/email_reservation_demande.css')) %}
+
+<p class="red">Vous avez une nouvelle reservation Client
+</p>
+<h1>BON DE RESERVATION</h1>
+<h2>Service de voiture de transport avec chauffeur</h2>
+<h4>Billet collectif</h4>
+<p>(Arrêté du 14 Février 1986 - Article 5) et ORDRE DE MISSION (Arrêté du 6 janvier 1993 - Article 3)</p>
+<hr>
+<p>Client:
+	{{ reservation.name }}</p>
+<p>Email:
+	{{ reservation.email }}</p>
+<p>Telephone:
+	{{ reservation.phone }}</p>
+<hr>
+<p>Date:
+	{{ reservation.date | date('d/m/Y') }}
+</p>
+<p>Heurs:
+
+	{{ reservation.time | date('H:i')}}
+</p>
+
+<p>Depart:
+	{{ reservation.starAdress }}</p>
+
+
+<p>Arriver:
+	{{ reservation.endAdress }}</p>
+<hr>
+<p>Nombre de passagers:
+	{{ reservation.nbPassagers }}</p>
+
+<p>Nombre de bagages:
+	{{ reservation.nbBagages }}</p>
+
+<p>Numeros de vol / train:
+	{{ reservation.numFlight }}</p>
+
+<p>Messages:
+	{{reservation.messages}}</p>
+
+{% if driver %}
+
+	<p>Chauffeur:
+		{{ driver.name }}</p>
+
+	<p>Societe prestaraire :
+		{{ company.name }}</p>
+
+{% endif %}
+{% endapply %}

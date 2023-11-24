@@ -1,0 +1,7 @@
+<form method="post" action="{{ path('reservation_by_client_add_driver', {'id': reservation.id}) }}">
+	<input type="number" min="100000" max="999999" name="code" value="Code Chaffeur" placeholder="code driver">
+	<input type="hidden" name="_token" value="{{ csrf_token('add_driver' ~ reservation.id) }}">
+	<button class="btn btn-info ms-auto">
+		Ajouter
+	</button>
+</form>

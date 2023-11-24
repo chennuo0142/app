@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Dispatcher{% endblock %}
+
+{% block body %}
+    <h1>Edit Dispatcher</h1>
+
+    {{ include('dispatcher/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_dispatcher_index') }}">back to list</a>
+
+    {{ include('dispatcher/_delete_form.html.twig') }}
+{% endblock %}

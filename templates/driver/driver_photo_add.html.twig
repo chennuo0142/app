@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Driver
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/driverPhoto.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+	<div class="container">
+		<main>
+
+			<h1>Driver Profil Photo edit</h1>
+			<a href="{{ path('app_driver_index') }}">Retour Liste</a>
+
+			<div>
+				<p>Photo Actuelle:</p>
+				<img src="{{ asset('uploads/' ~ driver.photo) }}" alt="photo" width="150" id="driver-photo-js">
+			</div>
+			<div>
+				{% if galerys %}
+					{% for galery in galerys %}
+						<article>
+							<p>
+								{{ galery.name }}</p>
+							{% for image in galery.images %}
+
+								<a href="{{ path('app_driver_photo_insert_api',{'id':image.id, 'driver':driver.id}) }}" data-insert data-token="{{ csrf_token('insert' ~ image.id)}} ">
+									<img src="{{ asset('uploads/' ~ image.name) }}" alt="" width="200">
+								</a>
+
+							{% endfor %}
+						</article>
+					{% endfor %}
+
+
+				{% endif %}
+
+			</div>
+
+		</main>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue Chez vous
+{% endblock %}
+
+{% block body %}
+	<h1 class="title-home-page">Welcom</h1>
+	<section class="mb-1">
+		<img src="/image/headers/bicycle.png" alt="" width="150px">
+	</section>
+
+
+	<a href="{{ path('app_reservation_by_client') }}">
+		<button class="btn btn-primary">Reserver une course</button>
+	</a>
+
+
+{% endblock %}

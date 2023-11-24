@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello GestionReservationController!
+{% endblock %}
+
+{% block body %}
+	<h1>Reservations by client</h1>
+
+	{% if is_granted('ROLE_ADMIN') %}
+		<h3>Reservations without user (admin)</h3>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Created</th>
+					<th scope="col">Name</th>
+					<th scope="col">Date</th>
+					<th scope="col">Produits</th>
+					<th scope="col">Driver</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if reservations %}
+					{% for reservation in reservations %}
+						<tr>
+							<th>{{ reservation.id }}</th>
+							<td>{{ reservation.createdAt | date('m/d/Y - H:i') }}</td>
+							<td>
+								{{ reservation.name }}</td>
+							<td>{{ reservation.date | date('m/d/Y') }}
+								a
+								{{ reservation.time | date('H:i') }}
+							</td>
+							<td>{{ reservation.service }}</td>
+						</tr>
+					{% endfor %}
+
+				{% endif %}
+
+
+			</tbody>
+		</table>
+	{% endif %}
+
+	<h3>Reservation with user</h3>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Created</th>
+				<th scope="col">Name</th>
+				<th scope="col">Date</th>
+				<th scope="col">Produits</th>
+				<th scope="col">Driver</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% if reservations %}
+				{% for reservation in reservationsUser %}
+					<tr>
+						<th>{{ reservation.id }}</th>
+						<td>{{ reservation.createdAt | date('m/d/Y - H:i') }}</td>
+						<td>
+							{{ reservation.name }}</td>
+						<td>{{ reservation.date | date('m/d/Y') }}
+							a
+							{{ reservation.time | date('H:i') }}
+						</td>
+						<td>{{ reservation.service }}</td>
+					</tr>
+				{% endfor %}
+
+			{% endif %}
+
+
+		</tbody>
+	</table>
+
+{% endblock %}

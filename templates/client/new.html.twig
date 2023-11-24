@@ -1,0 +1,20 @@
+{% extends 'base.gestion.html.twig' %}
+
+{% block title %}New Client
+{% endblock %}
+
+{# redefinission style #}
+{% block stylesheet %}<link rel="stylesheet" href="{{ asset('css/client.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('js/client.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+	<h1>Create new Client</h1>
+
+	{{ include('client/_form.html.twig') }}
+	<div class="d-flex justify-content-center">
+		<a href="{{ path('app_client_index') }}" class="btn btn-secondary">back to list</a>
+	</div>
+{% endblock %}

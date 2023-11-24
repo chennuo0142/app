@@ -1,0 +1,47 @@
+{% extends 'base.gestion.html.twig' %}
+
+{% block title %}Client index
+{% endblock %}
+
+{% block body %}
+	<h1>Liste Client</h1>
+	<a href="{{ path('app_client_new') }}">
+		<button class="btn btn-sm btn-primary mb-2">+ Create New</button>
+	</a>
+	<div class="overflow-x-auto overflow-y-auto">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Ref</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Prenom</th>
+					<th scope="col">Societe</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for client in clients %}
+					<tr>
+						<th scope="row">{{ client.id }}</th>
+						<td>{{ client.name }}</td>
+						<td>{{ client.firstName }}</td>
+						<td>{{ client.company }}</td>
+						<td>
+
+
+							<a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn btn-secondary btn-sm">edit</a>
+							{% if isReservation %}
+								<a href="{{ path('app_reservation_index',{client: client.id}) }}" role="link" class="btn btn-info btn-sm">Reservation</a>
+							{% else %}
+								<a href="#" role="link" class="card-link">Reservation</a>
+							{% endif %}
+						</td>
+					</tr>
+				{% else %}
+					no records found
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}

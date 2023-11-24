@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dispatcher{% endblock %}
+
+{% block body %}
+    <h1>Dispatcher</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dispatcher.id }}</td>
+            </tr>
+            <tr>
+                <th>UserId</th>
+                <td>{{ dispatcher.userId }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ dispatcher.name }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ dispatcher.phone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ dispatcher.email }}</td>
+            </tr>
+            <tr>
+                <th>Adress</th>
+                <td>{{ dispatcher.adress }}</td>
+            </tr>
+            <tr>
+                <th>ZipCode</th>
+                <td>{{ dispatcher.zipCode }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ dispatcher.city }}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{ dispatcher.country }}</td>
+            </tr>
+            <tr>
+                <th>Siret</th>
+                <td>{{ dispatcher.siret }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_dispatcher_index') }}">back to list</a>
+
+    <a href="{{ path('app_dispatcher_edit', {'id': dispatcher.id}) }}">edit</a>
+
+    {{ include('dispatcher/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,22 @@
+.driver-show-cadre {
+    display: grid;
+    grid-template-columns: 40% 50%;
+
+    span {
+        display: block;
+        align-items: center;
+    }
+
+    .zone-left {
+        border-right: solid 1px rgb(148, 146, 146);
+        margin-right: 5px;
+
+        .zone-left-up {
+            display: flex;
+            justify-content: center;
+        }
+
+
+    }
+
+}

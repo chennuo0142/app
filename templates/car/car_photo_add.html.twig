@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edit Car
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/carPhoto.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+	<h1>Edit Car photo</h1>
+	<a href="{{ path('app_car_index') }}">back to list</a>
+	<div>
+		<p>Photo Actuelle:</p>
+		<img src="{{ asset('uploads/' ~ car.photo) }}" alt="photo" width="150" id="car-photo-js">
+	</div>
+	<div>
+		{% if galerys %}
+			{% for galery in galerys %}
+				<article>
+					<p>
+						{{ galery.name }}</p>
+					{% for image in galery.images %}
+
+						<a href="{{ path('app_car_photo_insert_api',{'id':image.id, 'car':car.id}) }}" data-insert data-token="{{ csrf_token('insert' ~ image.id)}} ">
+							<img src="{{ asset('uploads/' ~ image.name) }}" alt="" width="200">
+						</a>
+
+					{% endfor %}
+				</article>
+			{% endfor %}
+
+
+		{% endif %}
+
+	</div>
+{% endblock %}

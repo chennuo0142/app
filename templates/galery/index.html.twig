@@ -1,0 +1,32 @@
+{% extends 'base.gestion.html.twig' %}
+
+{% block title %}Galery
+{% endblock %}
+
+{% block body %}
+	<h1>Galery</h1>
+	<a href="{{ path('app_gestion_index') }}">Retour</a>
+	{% if galerys %}
+		{% for galery in galerys %}
+			<article>
+				id:{{  galery.id}}
+				<a href="{{ path('app_galery_add_image',{id:galery.id}) }}">Add images</a>
+				<div>{{ galery.name }}</div>
+
+				{% if galery.images %}
+					{% for image in galery.images %}
+						<img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
+					{% endfor %}
+
+				{% endif %}
+
+
+			</article>
+
+
+		{% endfor %}
+
+
+	{% endif %}
+
+{% endblock %}

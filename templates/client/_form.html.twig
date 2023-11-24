@@ -1,0 +1,34 @@
+{{ form_start(form) }}
+
+{{ form_row(form.name) }}
+{{ form_row(form.firstName) }}
+{{ form_row(form.clientPro) }}
+<div id="isProClient" class="isProClient" hidden>
+	{{ form_row(form.company) }}
+	{{ form_row(form.siret) }}
+	{{ form_row(form.tvaNumber) }}
+</div>
+{{ form_row(form.email) }}
+{{ form_row(form.phone) }}
+{{ form_row(form.adress) }}
+{{ form_row(form.cp) }}
+
+
+<span class="city-js" id="city-js"></span>
+
+
+<div class="input-group mb-3">
+
+
+	<select name="select-city" id="select-city" class="form-control form-select" aria-label="Default select example">
+		<option value="{{ client.city }}">{{ client.city}}</option>
+	</select>
+
+	<span class="input-group-text"></span>
+
+
+	<input type="text" name="city" id="city" class="form-control" placeholder="Ville" value="{{ client.city }}">
+
+</div>
+<button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

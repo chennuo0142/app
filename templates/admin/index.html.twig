@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!
+{% endblock %}
+
+{% block body %}
+	<h1>Admin</h1>
+	<div>
+		<a href="{{ path('app_admin_users') }}">
+			<button class="btn btn-sm btn-primary">Liste Users</button>
+		</a>
+
+		<a href="{{ path('app_reservation_by_client_crud_index') }}">
+			<button class="btn btn-sm btn-primary">Reservation By Client</button>
+		</a>
+	</div>
+{% endblock %}

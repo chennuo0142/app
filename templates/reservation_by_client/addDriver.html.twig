@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ReservationByClientController!
+{% endblock %}
+
+{% block body %}
+	<h1>Recapitulative de votre reservation</h1>
+	<div class="shadow-sm p-3 mb-5 bg-body rounded">
+		<h4>Vous:</h4>
+		Nom:
+		<strong>{{reservation.name}}</strong>
+		<br>
+		Téléphone:
+		<strong>{{reservation.phone}}</strong>
+		<br>
+		Email:
+		<strong>{{reservation.email}}</strong>
+	</div>
+
+	<div class="shadow-sm p-3 mb-5 bg-body rounded">
+		<h4>Vous souhaitez:</h4>
+
+		Service:
+		<strong>{{reservation.service}}</strong>
+		<br>
+		Date:
+		<strong>{{reservation.date | date('d/m/Y')}}</strong>
+		<br>
+		Heurs:
+		<strong>{{reservation.time | date('H:i')}}</strong>
+		<br>
+		Adresse de départ:
+		<strong>{{reservation.starAdress}}</strong>
+		<br>
+		Adresse d'arrivé:
+		<strong>{{reservation.endAdress}}</strong>
+		<br>
+		Nombre de passagers:
+		<strong>{{reservation.nbPassagers}}</strong>
+		<br>
+		Nombre de bagages:
+		<strong>{{reservation.nbBagages}}</strong>
+		<br>
+		Numéros de vol / train:
+		<strong>{{reservation.numFlight}}</strong>
+		<br>
+
+
+	</div>
+
+	<div class="shadow-sm p-3 mb-5 bg-body rounded">
+		<h4>Votre messages:</h4>
+		{{reservation.messages}}
+	</div>
+
+
+	<div class="shadow-sm p-3 mb-5 bg-body rounded">
+		<p>Contacter le Driver pour obtenir sont Id Code(Optionnel)</p>
+		{{ include ('reservation_by_client/_addDriverForm.html.twig') }}
+
+	</div>
+	{% if driver %}
+
+		<div class="card" style="width: 18rem;">
+			<img src="{{ asset('uploads/' ~ driver.photo) | imagine_filter('miniature') }}" class="card-img-top photo_driver" alt="...">
+			<div class="card-body">
+				<p class="card-text">Driver Name:
+					{{ driver.name }}</p>
+				<p class="card-text">Telephone:
+					{{ driver.phone }}</p>
+				<p class="card-text">Email:
+					{{ driver.email }}</p>
+
+			</div>
+		</div>
+	{% else %}
+		<p>Contacter le chauffeur pour obtenir son Id Code</p>
+	{% endif %}
+
+	{{  include ("reservation_by_client/_registerReservationForm.html.twig")  }}
+{% endblock %}

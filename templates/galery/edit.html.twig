@@ -1,0 +1,35 @@
+{% extends 'base.gestion.html.twig' %}
+
+{% block title %}Edition galery
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('js/delete.js') }}" defer></script>
+{% endblock %}
+{% block body %}
+	<p>{{ app.user.email }}</p>
+	<a href="{{ path('app_galery') }}" role="button">Retour Galery</a>
+
+	<article>
+		<h3>{{ galery.name }}</h3>
+
+		<ul>
+
+			{% for image in galery.images %}
+				<li>
+					<img src="{{ asset('/uploads/' ~ image.name) }}" alt="Image" width="150">
+					<a href="{{ path('app_galery_del_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+				</li>
+
+			{% endfor %}
+		</ul>
+	</article>
+
+
+	{{ form_start(form) }}
+
+	{{ form_row(form.name) }}
+	{{ form_row(form.images) }}
+	<input type="submit" value="Enregistrer">
+	{{ form_end(form) }}
+
+{% endblock %}

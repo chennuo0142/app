@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture
+{% endblock %}
+
+{% block body %}
+	<h1>Facture new</h1>
+	<div class="d-flex justify-content-end">
+		<article class="border p-3 mb-2 bg-primary text-white">
+			<h2>{{company.name}}</h2>
+			<p>{{ company.adress}}</p>
+			{{ company.city }}
+			{{ company.zipCode }}
+		</article>
+	</div>
+
+
+	<main class="shadow p-3 mb-5 bg-body rounded mt-3">
+
+		{{ include('facture_libre/_form.html.twig') }}
+
+	</main>
+{% endblock %}

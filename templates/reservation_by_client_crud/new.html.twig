@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ReservationByClient{% endblock %}
+
+{% block body %}
+    <h1>Create new ReservationByClient</h1>
+
+    {{ include('reservation_by_client_crud/_form.html.twig') }}
+
+    <a href="{{ path('app_reservation_by_client_crud_index') }}">back to list</a>
+{% endblock %}

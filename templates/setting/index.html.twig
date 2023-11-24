@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Setting
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Setting page</h1>
+		{{ form_start(form) }}
+		<small>Afficher ou non les informations banquaire sur la facture pour recevoir les reglement par virment</small>
+		{{ form_row(form.showBank) }}
+		<small>Si tva non applicable, decocher la case ci-dessous, et selectionner la case afficher le text de lois</small>
+		{{ form_row(form.tva) }}
+		<small>Si TVA non applicable, cocher pour afficher le text de lois obligatoir</small>
+		{{ form_row(form.noTvaText) }}
+		{{ form_row(form.textLawTva) }}
+		<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

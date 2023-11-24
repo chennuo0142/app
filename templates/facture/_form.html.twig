@@ -1,0 +1,106 @@
+{{ form_start(factureForm) }}
+<div class="input-group mb-3">
+	<div class="me-3">
+		{{ form_row(factureForm.date) }}
+	</div>
+	<div class="me-3">
+		{{ form_row(factureForm.name) }}
+
+	</div>
+	<div class="me-3">
+		<label for="client" class="form-label">Liste Clients</label>
+		<select name="client" id="client-js" class="form-select" aria-label="Default select example">
+			<option value="#">Selectionner un client</option>
+			{% for client in clients %}
+				<option value="{{ client.id }}">{{ client.name }}</option>
+			{% endfor %}
+		</select>
+	</div>
+</div>
+
+{{ form_row(factureForm.email) }}
+{{ form_row(factureForm.adress) }}
+
+<div class="input-group mb-3">
+	<div class="me-2">
+		{{ form_row(factureForm.zipCode) }}
+	</div>
+
+	<div class="me-2">
+		{{ form_row(factureForm.city) }}
+	</div>
+	<div class="me-2">
+		{{ form_row(factureForm.country) }}
+	</div>
+
+</div>
+
+<div class="form-check form-switch">
+	<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" name="isTTC" {{ isChecked }}>
+	<label class="form-check-label" for="flexSwitchCheckChecked">Tarif TTC</label>
+</div>
+
+<div class="row text-primary bg-dark">
+	<div class="col-7">DESIGNATION</div>
+	<div class="col-2">PRIX</div>
+	<div class="col-1">TVA</div>
+	<div class="col-1">QT</div>
+	<div class="col-1"></div>
+</div>
+<div class="row mt-1">
+	<div class="col-7">{{ form_row(factureForm.article1) }}</div>
+	<div class="col-2">{{ form_row(factureForm.price1) }}</div>
+	<div class="col-1">{{ form_row(factureForm.tva1) }}</div>
+	<div class="col-1">{{ form_row(factureForm.quantity1) }}</div>
+	<div class="col-1" id="del-1">
+		<button id="delArticle-js-1">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash3-fill" viewbox="0 0 16 16">
+				<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+			</svg>
+		</button>
+	</div>
+</div>
+<div class="row ">
+	<div class="col-7">{{ form_row(factureForm.article2) }}</div>
+	<div class="col-2">{{ form_row(factureForm.price2) }}</div>
+	<div class="col-1">{{ form_row(factureForm.tva2) }}</div>
+	<div class="col-1">{{ form_row(factureForm.quantity2) }}</div>
+	<div class="col-1" id="del-2">
+		<button id="delArticle-js-2">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash3-fill" viewbox="0 0 16 16">
+				<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+			</svg>
+		</button>
+	</div>
+</div>
+<div class="row ">
+	<div class="col-7">{{ form_row(factureForm.article3) }}</div>
+	<div class="col-2">{{ form_row(factureForm.price3) }}</div>
+	<div class="col-1">{{ form_row(factureForm.tva3) }}</div>
+	<div class="col-1">{{ form_row(factureForm.quantity3) }}</div>
+	<div class="col-1" id="del-3">
+		<button id="delArticle-js-3">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash3-fill" viewbox="0 0 16 16">
+				<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+			</svg>
+		</button>
+	</div>
+</div>
+<div class="row ">
+	<div class="col-7">{{ form_row(factureForm.article4) }}</div>
+	<div class="col-2">{{ form_row(factureForm.price4) }}</div>
+	<div class="col-1">{{ form_row(factureForm.tva4) }}</div>
+	<div class="col-1">{{ form_row(factureForm.quantity4) }}</div>
+	<div class="col-1" id="del-4">
+		<button id="delArticle-js-4">
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-trash3-fill" viewbox="0 0 16 16">
+				<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+			</svg>
+		</button>
+	</div>
+</div>
+
+
+{{ form_row(factureForm.comment) }}
+<button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(factureForm) }}

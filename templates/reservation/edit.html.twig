@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edittion
+{% endblock %}
+
+{% block body %}
+	<h1>Reservation edition</h1>
+	<p>Reservation Id :
+		{{ reservation.id }}</p>
+	<div class="grid">
+
+		<article>
+
+			{{ company.name }}
+			<br>
+			{{ company.adress }}
+			<br>
+			{{ company.city}}
+			{{ company.zipCode }}
+
+		</article>
+		<article>
+			{{ client.name }}
+			<br>
+			{{ client.adress }}
+			<br>
+			{{ client.city}}
+			{{ client.cp }}
+		</article>
+	</div>
+
+	{{ include('reservation/_form.html.twig') }}
+
+
+{% endblock %}
